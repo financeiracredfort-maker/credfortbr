@@ -6,6 +6,8 @@ import { AnimatedSection, useStaggerAnimation } from '@/hooks/useScrollAnimation
 import Header from './Header';
 import Footer from './Footer';
 import WhatsAppButton from './WhatsAppButton';
+import CountdownTimer from './CountdownTimer';
+import ExitIntentPopup from './ExitIntentPopup';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -116,6 +118,7 @@ const ServicePageTemplate: React.FC<ServicePageProps> = ({
   return (
     <div className="min-h-screen bg-background text-foreground">
       <Header />
+      <ExitIntentPopup />
       
       {/* Hero Section with Image */}
       <section ref={heroRef} className="relative min-h-[90vh] flex items-center overflow-hidden">
@@ -145,12 +148,9 @@ const ServicePageTemplate: React.FC<ServicePageProps> = ({
         
         <div className="relative z-10 w-full pt-28 pb-16 md:pt-36 md:pb-24 px-4">
           <div className="max-w-7xl mx-auto">
-            {/* Urgency Badge */}
-            <div className="flex justify-start mb-6">
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/20 backdrop-blur-md border border-primary/40 text-primary text-xs font-bold tracking-widest uppercase animate-pulse-glow">
-                <Zap className="w-4 h-4" /> 
-                <span>{urgencyText}</span>
-              </div>
+            {/* Countdown Timer */}
+            <div className="flex flex-col sm:flex-row items-start gap-4 mb-6">
+              <CountdownTimer />
             </div>
 
             <div ref={heroContentRef} className="max-w-2xl opacity-0">

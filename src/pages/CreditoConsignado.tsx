@@ -1,14 +1,16 @@
 import React from 'react';
 import { Briefcase, Clock, Shield, Percent, FileCheck, Banknote } from 'lucide-react';
 import ServicePageTemplate from '@/components/ServicePageTemplate';
+import heroImage from '@/assets/hero-consignado.jpg';
 
 const CreditoConsignado = () => {
   return (
     <ServicePageTemplate
       serviceName="Crédito Consignado"
-      headline="A menor taxa do mercado para"
-      subheadline="servidores e aposentados"
-      heroDescription="Crédito consignado com desconto em folha. Taxas a partir de 1.29% ao mês, as menores do Brasil. Ideal para servidores públicos, aposentados e pensionistas do INSS."
+      headline="As menores taxas do mercado para"
+      subheadline="aposentados e servidores"
+      heroDescription="Você que é aposentado, pensionista ou servidor público merece as melhores condições. Crédito consignado com taxas a partir de 1.29% ao mês, desconto direto em folha e aprovação facilitada."
+      heroImage={heroImage}
       minValue="R$ 500"
       maxValue="R$ 500.000"
       taxaMin="1.29%"
