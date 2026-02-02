@@ -4,6 +4,7 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Link } from 'react-router-dom';
 import heroImage from '@/assets/hero-home.jpg';
+import CountdownTimer from './CountdownTimer';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -83,12 +84,9 @@ const HeroSection = () => {
       
       <div className="relative z-10 w-full pt-28 pb-24 md:pt-36 md:pb-32 px-4">
         <div className="max-w-7xl mx-auto">
-          {/* Urgency Banner */}
-          <div className="flex justify-start mb-6">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/20 backdrop-blur-md border border-primary/40 text-primary text-xs font-bold tracking-widest uppercase animate-pulse-glow">
-              <Zap className="w-4 h-4" /> 
-              <span>🔥 Promoção: Taxas a partir de 1.29% a.m. — Só até hoje!</span>
-            </div>
+          {/* Countdown Timer */}
+          <div className="flex flex-col sm:flex-row items-start gap-4 mb-6">
+            <CountdownTimer />
           </div>
 
           <div ref={contentRef} className="max-w-2xl opacity-0">

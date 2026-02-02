@@ -1,14 +1,16 @@
 import React from 'react';
 import { Home, Car, Clock, Shield, Percent, TrendingDown } from 'lucide-react';
 import ServicePageTemplate from '@/components/ServicePageTemplate';
+import heroImage from '@/assets/hero-garantia.jpg';
 
 const CreditoGarantia = () => {
   return (
     <ServicePageTemplate
       serviceName="Crédito com Garantia"
-      headline="Use seu imóvel ou veículo para conseguir"
-      subheadline="as menores taxas"
-      heroDescription="Crédito com garantia de imóvel ou veículo. Taxas até 3x menores que o crédito pessoal tradicional. Ideal para quem precisa de valores maiores com parcelas menores."
+      headline="Taxas até 5x menores usando seu"
+      subheadline="imóvel ou veículo"
+      heroDescription="Transforme seu patrimônio em poder de compra. Com seu imóvel ou veículo como garantia, você acessa as menores taxas do mercado. Ideal para quem precisa de valores altos com parcelas que cabem no bolso."
+      heroImage={heroImage}
       minValue="R$ 30.000"
       maxValue="R$ 3.000.000"
       taxaMin="0.89%"
