@@ -1,5 +1,9 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Star, Quote } from 'lucide-react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 const testimonials = [
   {
@@ -33,10 +37,69 @@ const testimonials = [
 ];
 
 const TestimonialsSection = () => {
+  const sectionRef = useRef<HTMLElement>(null);
+  const headerRef = useRef<HTMLDivElement>(null);
+  const cardsRef = useRef<HTMLDivElement>(null);
+  const statsRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.fromTo(headerRef.current,
+        { opacity: 0, y: 50 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          scrollTrigger: {
+            trigger: headerRef.current,
+            start: 'top 85%',
+          }
+        }
+      );
+
+      const cards = cardsRef.current?.children;
+      if (cards) {
+        gsap.fromTo(cards,
+          { opacity: 0, y: 60, scale: 0.95 },
+          {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            duration: 0.6,
+            stagger: 0.15,
+            scrollTrigger: {
+              trigger: cardsRef.current,
+              start: 'top 80%',
+            }
+          }
+        );
+      }
+
+      const stats = statsRef.current?.children;
+      if (stats) {
+        gsap.fromTo(stats,
+          { opacity: 0, y: 30 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.5,
+            stagger: 0.1,
+            scrollTrigger: {
+              trigger: statsRef.current,
+              start: 'top 90%',
+            }
+          }
+        );
+      }
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <section id="depoimentos" className="section-padding bg-card/30">
+    <section id="depoimentos" ref={sectionRef} className="section-padding bg-card/30">
       <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-16">
+        <div ref={headerRef} className="text-center mb-16 opacity-0">
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
             O que nossos <span className="gradient-text">clientes dizem</span>
           </h2>
@@ -45,7 +108,7 @@ const TestimonialsSection = () => {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-6">
+        <div ref={cardsRef} className="grid md:grid-cols-2 gap-6">
           {testimonials.map((testimonial, index) => (
             <div key={index} className="card-glass p-8 relative">
               <Quote className="absolute top-6 right-6 w-10 h-10 text-primary/10" />
@@ -72,7 +135,7 @@ const TestimonialsSection = () => {
         </div>
 
         {/* Stats */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-16">
+        <div ref={statsRef} className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-16">
           {[
             { value: "12.000+", label: "Clientes Atendidos" },
             { value: "R$ 500M+", label: "Em Crédito Liberado" },

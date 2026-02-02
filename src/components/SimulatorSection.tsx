@@ -1,14 +1,54 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { TrendingUp, CheckCircle2, MessageCircle, Shield, Zap } from 'lucide-react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 const WHATSAPP_NUMBER = '5541956766654';
 
 const SimulatorSection = () => {
   const [amount, setAmount] = useState(50000);
   const [months, setMonths] = useState(24);
+  const sectionRef = useRef<HTMLElement>(null);
+  const leftRef = useRef<HTMLDivElement>(null);
+  const rightRef = useRef<HTMLDivElement>(null);
 
   const interestRate = 0.0129;
   const monthlyInstallment = (amount * (interestRate * Math.pow(1 + interestRate, months))) / (Math.pow(1 + interestRate, months) - 1);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.fromTo(leftRef.current,
+        { opacity: 0, x: -60 },
+        {
+          opacity: 1,
+          x: 0,
+          duration: 0.8,
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: 'top 75%',
+          }
+        }
+      );
+
+      gsap.fromTo(rightRef.current,
+        { opacity: 0, x: 60 },
+        {
+          opacity: 1,
+          x: 0,
+          duration: 0.8,
+          delay: 0.2,
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: 'top 75%',
+          }
+        }
+      );
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
 
   const handleWhatsApp = () => {
     const message = `Olá! Fiz uma simulação na CredFort:
@@ -21,11 +61,11 @@ Gostaria de prosseguir com a contratação!`;
   };
 
   return (
-    <section id="simulador" className="section-padding bg-card/30">
+    <section id="simulador" ref={sectionRef} className="section-padding bg-card/30">
       <div className="max-w-7xl mx-auto">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left content */}
-          <div>
+          <div ref={leftRef} className="opacity-0">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-bold mb-6 uppercase tracking-widest">
               <TrendingUp className="w-3 h-3" /> Simulador Inteligente
             </div>
@@ -54,7 +94,7 @@ Gostaria de prosseguir com a contratação!`;
           </div>
 
           {/* Simulator Card */}
-          <div className="card-glass p-8 md:p-10 shadow-[var(--shadow-card)] relative overflow-hidden">
+          <div ref={rightRef} className="card-glass p-8 md:p-10 shadow-[var(--shadow-card)] relative overflow-hidden opacity-0">
             <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 blur-[100px] -z-10" />
             
             <div className="flex items-center justify-between mb-8">

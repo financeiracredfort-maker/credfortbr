@@ -1,12 +1,24 @@
 import React, { useState, useEffect } from 'react';
-import { Building2, Menu, X, MessageCircle } from 'lucide-react';
+import { Building2, Menu, X, MessageCircle, ChevronDown } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const WHATSAPP_NUMBER = '5541956766654';
 const WHATSAPP_MESSAGE = 'Olá! Gostaria de falar com um consultor da CredFort.';
 
+const services = [
+  { name: 'Crédito Pessoal', path: '/credito-pessoal' },
+  { name: 'Crédito Consignado', path: '/credito-consignado' },
+  { name: 'Crédito com Garantia', path: '/credito-garantia' },
+  { name: 'Antecipação FGTS', path: '/saque-aniversario-fgts' },
+  { name: 'Limpa Nome', path: '/limpa-nome' },
+  { name: 'Crédito Empresarial', path: '/credito-empresarial' },
+  { name: 'Crédito BNDES', path: '/credito-bndes' },
+];
+
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isServicesOpen, setIsServicesOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -25,18 +37,46 @@ const Header = () => {
       isScrolled ? 'bg-background/95 backdrop-blur-xl border-b border-border shadow-lg' : 'bg-transparent'
     }`}>
       <div className="max-w-7xl mx-auto px-4 h-20 flex items-center justify-between">
-        <a href="#" className="flex items-center gap-3">
+        <Link to="/" className="flex items-center gap-3">
           <div className="bg-gradient-to-br from-amber-400 to-amber-600 p-2 rounded-lg">
             <Building2 className="text-background w-6 h-6" />
           </div>
           <span className="text-2xl font-black tracking-tighter text-foreground">CREDFORT</span>
-        </a>
+        </Link>
         
         <div className="hidden md:flex items-center gap-8">
-          <a href="#vantagens" className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors">Vantagens</a>
-          <a href="#simulador" className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors">Simulador</a>
-          <a href="#depoimentos" className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors">Depoimentos</a>
-          <a href="#faq" className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors">Dúvidas</a>
+          {/* Services Dropdown */}
+          <div className="relative">
+            <button 
+              onMouseEnter={() => setIsServicesOpen(true)}
+              onMouseLeave={() => setIsServicesOpen(false)}
+              className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors flex items-center gap-1"
+            >
+              Serviços <ChevronDown className={`w-4 h-4 transition-transform ${isServicesOpen ? 'rotate-180' : ''}`} />
+            </button>
+            
+            {isServicesOpen && (
+              <div 
+                onMouseEnter={() => setIsServicesOpen(true)}
+                onMouseLeave={() => setIsServicesOpen(false)}
+                className="absolute top-full left-0 mt-2 w-64 bg-card border border-border rounded-xl shadow-2xl py-2 animate-fade-in"
+              >
+                {services.map((service) => (
+                  <Link
+                    key={service.path}
+                    to={service.path}
+                    className="block px-4 py-3 text-sm text-foreground hover:bg-primary/10 hover:text-primary transition-colors"
+                  >
+                    {service.name}
+                  </Link>
+                ))}
+              </div>
+            )}
+          </div>
+          
+          <a href="/#simulador" className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors">Simulador</a>
+          <a href="/#depoimentos" className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors">Depoimentos</a>
+          <a href="/#faq" className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors">Dúvidas</a>
           <button 
             onClick={handleWhatsApp}
             className="bg-primary text-primary-foreground px-6 py-2.5 rounded-full font-bold text-sm hover:brightness-110 transition-all shadow-lg flex items-center gap-2"
@@ -54,11 +94,23 @@ const Header = () => {
       {/* Mobile Menu */}
       {isMenuOpen && (
         <div className="md:hidden bg-card border-t border-border animate-fade-in">
-          <div className="px-4 py-6 space-y-4">
-            <a href="#vantagens" onClick={() => setIsMenuOpen(false)} className="block py-3 text-foreground font-medium border-b border-border">Vantagens</a>
-            <a href="#simulador" onClick={() => setIsMenuOpen(false)} className="block py-3 text-foreground font-medium border-b border-border">Simulador</a>
-            <a href="#depoimentos" onClick={() => setIsMenuOpen(false)} className="block py-3 text-foreground font-medium border-b border-border">Depoimentos</a>
-            <a href="#faq" onClick={() => setIsMenuOpen(false)} className="block py-3 text-foreground font-medium border-b border-border">Dúvidas</a>
+          <div className="px-4 py-6 space-y-2">
+            <p className="text-xs font-bold text-muted-foreground uppercase tracking-widest mb-4">Nossos Serviços</p>
+            {services.map((service) => (
+              <Link
+                key={service.path}
+                to={service.path}
+                onClick={() => setIsMenuOpen(false)}
+                className="block py-3 text-foreground font-medium border-b border-border"
+              >
+                {service.name}
+              </Link>
+            ))}
+            <div className="pt-4 space-y-2">
+              <a href="/#simulador" onClick={() => setIsMenuOpen(false)} className="block py-3 text-foreground font-medium border-b border-border">Simulador</a>
+              <a href="/#depoimentos" onClick={() => setIsMenuOpen(false)} className="block py-3 text-foreground font-medium border-b border-border">Depoimentos</a>
+              <a href="/#faq" onClick={() => setIsMenuOpen(false)} className="block py-3 text-foreground font-medium border-b border-border">Dúvidas</a>
+            </div>
             <button 
               onClick={handleWhatsApp}
               className="w-full btn-primary mt-4"
