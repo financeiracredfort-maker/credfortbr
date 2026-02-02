@@ -1,5 +1,9 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Clock, CreditCard, ShieldCheck, Smartphone, HeadphonesIcon, TrendingDown, LucideIcon } from 'lucide-react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 interface BenefitCardProps {
   icon: LucideIcon;
@@ -18,6 +22,10 @@ const BenefitCard = ({ icon: Icon, title, desc }: BenefitCardProps) => (
 );
 
 const BenefitsSection = () => {
+  const sectionRef = useRef<HTMLElement>(null);
+  const headerRef = useRef<HTMLDivElement>(null);
+  const cardsRef = useRef<HTMLDivElement>(null);
+
   const benefits = [
     {
       icon: Clock,
@@ -51,10 +59,48 @@ const BenefitsSection = () => {
     }
   ];
 
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      // Header animation
+      gsap.fromTo(headerRef.current,
+        { opacity: 0, y: 50 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          scrollTrigger: {
+            trigger: headerRef.current,
+            start: 'top 85%',
+          }
+        }
+      );
+
+      // Cards stagger animation
+      const cards = cardsRef.current?.children;
+      if (cards) {
+        gsap.fromTo(cards,
+          { opacity: 0, y: 60 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.6,
+            stagger: 0.15,
+            scrollTrigger: {
+              trigger: cardsRef.current,
+              start: 'top 80%',
+            }
+          }
+        );
+      }
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <section id="vantagens" className="section-padding">
+    <section id="vantagens" ref={sectionRef} className="section-padding">
       <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-16">
+        <div ref={headerRef} className="text-center mb-16 opacity-0">
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
             Por que escolher a <span className="gradient-text">CredFort?</span>
           </h2>
@@ -63,7 +109,7 @@ const BenefitsSection = () => {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div ref={cardsRef} className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {benefits.map((benefit, index) => (
             <BenefitCard key={index} {...benefit} />
           ))}

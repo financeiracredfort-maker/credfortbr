@@ -1,19 +1,50 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { MessageCircle, ArrowRight, Shield, Clock } from 'lucide-react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 const WHATSAPP_NUMBER = '5541956766654';
 const WHATSAPP_MESSAGE = 'Olá! Quero solicitar meu crédito com a CredFort e garantir a taxa promocional!';
 
 const CTASection = () => {
+  const sectionRef = useRef<HTMLElement>(null);
+  const cardRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.fromTo(cardRef.current,
+        { opacity: 0, scale: 0.9, y: 50 },
+        {
+          opacity: 1,
+          scale: 1,
+          y: 0,
+          duration: 0.8,
+          ease: 'back.out(1.2)',
+          scrollTrigger: {
+            trigger: cardRef.current,
+            start: 'top 85%',
+          }
+        }
+      );
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
+
   const handleWhatsApp = () => {
     window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(WHATSAPP_MESSAGE)}`, '_blank');
   };
 
   return (
-    <section className="section-padding">
+    <section ref={sectionRef} className="section-padding">
       <div className="max-w-5xl mx-auto">
-        <div className="relative overflow-hidden rounded-[2.5rem] p-10 md:p-16 text-center" 
-             style={{ background: 'var(--gradient-gold-dark)' }}>
+        <div 
+          ref={cardRef}
+          className="relative overflow-hidden rounded-[2.5rem] p-10 md:p-16 text-center opacity-0" 
+          style={{ background: 'var(--gradient-gold-dark)' }}
+        >
           {/* Texture overlay */}
           <div className="absolute inset-0 opacity-10 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCI+CjxyZWN0IHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCIgZmlsbD0iIzAwMCI+PC9yZWN0Pgo8cmVjdCB3aWR0aD0iMSIgaGVpZ2h0PSIxIiBmaWxsPSIjMjIyIj48L3JlY3Q+Cjwvc3ZnPg==')]" />
           

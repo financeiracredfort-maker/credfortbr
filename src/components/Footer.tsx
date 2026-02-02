@@ -1,7 +1,18 @@
 import React from 'react';
 import { Building2, MessageCircle, Phone, Mail, MapPin } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const WHATSAPP_NUMBER = '5541956766654';
+
+const services = [
+  { name: 'Crédito Pessoal', path: '/credito-pessoal' },
+  { name: 'Crédito Consignado', path: '/credito-consignado' },
+  { name: 'Crédito com Garantia', path: '/credito-garantia' },
+  { name: 'Antecipação FGTS', path: '/saque-aniversario-fgts' },
+  { name: 'Limpa Nome', path: '/limpa-nome' },
+  { name: 'Crédito Empresarial', path: '/credito-empresarial' },
+  { name: 'Crédito BNDES', path: '/credito-bndes' },
+];
 
 const Footer = () => {
   const handleWhatsApp = () => {
@@ -12,29 +23,41 @@ const Footer = () => {
     <footer className="py-16 border-t border-border px-4">
       <div className="max-w-7xl mx-auto">
         <div className="grid md:grid-cols-4 gap-12 mb-12">
-          <div className="col-span-2">
-            <div className="flex items-center gap-3 mb-6">
+          <div className="col-span-1">
+            <Link to="/" className="flex items-center gap-3 mb-6">
               <div className="bg-primary p-2 rounded-lg">
                 <Building2 className="w-5 h-5 text-primary-foreground" />
               </div>
               <span className="text-xl font-black text-foreground">CREDFORT</span>
-            </div>
-            <p className="text-muted-foreground max-w-sm text-sm mb-6">
-              A CredFort é uma correspondente bancária focada em facilitar o acesso ao crédito com transparência, 
-              segurança e inovação tecnológica.
+            </Link>
+            <p className="text-muted-foreground text-sm mb-6">
+              Correspondente bancário focado em facilitar o acesso ao crédito com transparência e segurança.
             </p>
             <button 
               onClick={handleWhatsApp}
               className="inline-flex items-center gap-2 text-primary font-bold text-sm hover:underline"
             >
               <MessageCircle className="w-4 h-4" />
-              Fale conosco pelo WhatsApp
+              Fale pelo WhatsApp
             </button>
           </div>
           
           <div>
+            <h4 className="font-bold text-foreground mb-6 uppercase text-xs tracking-widest">Nossos Serviços</h4>
+            <ul className="space-y-3 text-muted-foreground text-sm">
+              {services.map((service) => (
+                <li key={service.path}>
+                  <Link to={service.path} className="hover:text-primary transition-colors">
+                    {service.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+          
+          <div>
             <h4 className="font-bold text-foreground mb-6 uppercase text-xs tracking-widest">Institucional</h4>
-            <ul className="space-y-4 text-muted-foreground text-sm">
+            <ul className="space-y-3 text-muted-foreground text-sm">
               <li><a href="#" className="hover:text-primary transition-colors">Política de Privacidade</a></li>
               <li><a href="#" className="hover:text-primary transition-colors">Termos de Uso</a></li>
               <li><a href="#" className="hover:text-primary transition-colors">Ouvidoria</a></li>
