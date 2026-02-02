@@ -1,6 +1,7 @@
 import React from 'react';
 import { Building2, TrendingUp, Clock, Shield, Briefcase, BarChart3 } from 'lucide-react';
 import ServicePageTemplate from '@/components/ServicePageTemplate';
+import heroImage from '@/assets/hero-empresarial.jpg';
 
 const CreditoEmpresarial = () => {
   return (
@@ -8,7 +9,8 @@ const CreditoEmpresarial = () => {
       serviceName="Crédito Empresarial"
       headline="Capital de giro para sua empresa"
       subheadline="crescer sem parar"
-      heroDescription="Crédito para empresas de todos os portes. Capital de giro, antecipação de recebíveis, financiamento de equipamentos e muito mais. Taxas competitivas e aprovação rápida."
+      heroDescription="Sua empresa precisa de fôlego? Crédito empresarial para todos os portes. Capital de giro, antecipação de recebíveis, financiamento de equipamentos e muito mais. Taxas competitivas, aprovação rápida e atendimento especializado para o seu negócio decolar."
+      heroImage={heroImage}
       minValue="R$ 10.000"
       maxValue="R$ 5.000.000"
       taxaMin="1.49%"
@@ -19,7 +21,7 @@ const CreditoEmpresarial = () => {
         {
           icon: <TrendingUp className="w-7 h-7 text-primary" />,
           title: "Capital de Giro Rápido",
-          description: "Dinheiro na conta em até 48 horas para você aproveitar oportunidades e manter seu negócio funcionando."
+          description: "Dinheiro na conta em até 48 horas para você aproveitar oportunidades e manter seu negócio sempre funcionando."
         },
         {
           icon: <BarChart3 className="w-7 h-7 text-primary" />,
@@ -29,22 +31,22 @@ const CreditoEmpresarial = () => {
         {
           icon: <Building2 className="w-7 h-7 text-primary" />,
           title: "Todos os Portes",
-          description: "MEI, ME, EPP, Médias e Grandes empresas. Temos soluções para cada momento do seu negócio."
+          description: "MEI, ME, EPP, Médias e Grandes empresas. Temos soluções específicas para cada momento do seu negócio."
         },
         {
           icon: <Shield className="w-7 h-7 text-primary" />,
           title: "Sem Garantia Real",
-          description: "Capital de giro sem necessidade de hipotecar imóveis ou dar seu carro como garantia."
+          description: "Capital de giro sem necessidade de hipotecar imóveis ou dar seu carro como garantia. Menos burocracia."
         },
         {
           icon: <Briefcase className="w-7 h-7 text-primary" />,
           title: "Financiamento de Equipamentos",
-          description: "Compre máquinas, veículos e equipamentos parcelando em até 60 meses."
+          description: "Compre máquinas, veículos e equipamentos parcelando em até 60 meses. Invista no crescimento."
         },
         {
           icon: <Clock className="w-7 h-7 text-primary" />,
           title: "Análise Simplificada",
-          description: "Documentação básica e análise rápida. Nada de burocracia bancária tradicional."
+          description: "Documentação básica e análise rápida. Nada de burocracia bancária tradicional que trava seu negócio."
         }
       ]}
       features={[
@@ -61,7 +63,7 @@ const CreditoEmpresarial = () => {
         {
           name: "Ricardo Menezes",
           role: "CEO, Indústria Têxtil - SP",
-          content: "Conseguimos R$ 800 mil para comprar novos maquinários. A taxa foi melhor que qualquer banco tradicional.",
+          content: "Conseguimos R$ 800 mil para comprar novos maquinários. A taxa foi muito melhor que qualquer banco tradicional. Parceria de verdade!",
           rating: 5
         },
         {
@@ -73,30 +75,30 @@ const CreditoEmpresarial = () => {
         {
           name: "Carlos Eduardo",
           role: "Sócio, Transportadora - MG",
-          content: "Financiei 5 caminhões em condições excelentes. Parcelas cabem no faturamento dos próprios veículos.",
+          content: "Financiei 5 caminhões em condições excelentes. Parcelas cabem no faturamento dos próprios veículos. Investimento inteligente!",
           rating: 5
         }
       ]}
       faqs={[
         {
           question: "Qual o tempo mínimo de empresa?",
-          answer: "A partir de 6 meses de faturamento para a maioria dos produtos. Para alguns casos, empresas novas também são atendidas."
+          answer: "A partir de 6 meses de faturamento para a maioria dos produtos. Para alguns casos especiais, empresas novas também são atendidas."
         },
         {
           question: "Quais documentos são necessários?",
-          answer: "Contrato social, documentos dos sócios, comprovante de faturamento (extratos, notas fiscais) e declaração de faturamento."
+          answer: "Contrato social, documentos dos sócios, comprovante de faturamento (extratos, notas fiscais) e declaração de faturamento. Processo simplificado!"
         },
         {
           question: "MEI pode contratar?",
-          answer: "Sim! Temos linhas específicas para MEI com valores de R$ 5.000 a R$ 50.000 e aprovação simplificada."
+          answer: "Sim! Temos linhas específicas para MEI com valores de R$ 5.000 a R$ 50.000 e aprovação simplificada. Seu negócio merece crescer."
         },
         {
           question: "Como funciona a antecipação de recebíveis?",
-          answer: "Você vende e antecipa o recebimento. Vendeu hoje no cartão para receber em 30 dias? Antecipamos e você recebe amanhã."
+          answer: "Você vende e antecipa o recebimento. Vendeu hoje no cartão para receber em 30 dias? Antecipamos e você recebe amanhã. Simples assim!"
         },
         {
           question: "Empresa negativada pode contratar?",
-          answer: "Depende do produto. Para antecipação de recebíveis, por exemplo, a garantia são as próprias vendas, então sim."
+          answer: "Depende do produto. Para antecipação de recebíveis, por exemplo, a garantia são as próprias vendas, então sim, é possível!"
         }
       ]}
     />

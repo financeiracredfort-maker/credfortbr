@@ -1,6 +1,7 @@
 import React from 'react';
 import { Landmark, TrendingUp, Clock, Shield, Factory, Leaf } from 'lucide-react';
 import ServicePageTemplate from '@/components/ServicePageTemplate';
+import heroImage from '@/assets/hero-bndes.jpg';
 
 const CreditoBNDES = () => {
   return (
@@ -8,7 +9,8 @@ const CreditoBNDES = () => {
       serviceName="Crédito BNDES"
       headline="Financiamento com as menores taxas do Brasil via"
       subheadline="BNDES"
-      heroDescription="Acesse as linhas de crédito do BNDES com as melhores condições do mercado. Financie máquinas, equipamentos, projetos de inovação e expansão com taxas subsidiadas."
+      heroDescription="Acesse as linhas de crédito do BNDES com as melhores condições do mercado brasileiro. Financie máquinas, equipamentos, projetos de inovação e expansão com taxas subsidiadas pelo Governo Federal. O caminho mais inteligente para fazer sua empresa crescer."
+      heroImage={heroImage}
       minValue="R$ 20.000"
       maxValue="R$ 20.000.000"
       taxaMin="0.79%"
@@ -19,32 +21,32 @@ const CreditoBNDES = () => {
         {
           icon: <Landmark className="w-7 h-7 text-primary" />,
           title: "Taxas Subsidiadas",
-          description: "Taxas muito abaixo do mercado, subsidiadas pelo Governo Federal através do BNDES."
+          description: "Taxas muito abaixo do mercado, subsidiadas pelo Governo Federal através do BNDES. Economia real para sua empresa."
         },
         {
           icon: <Factory className="w-7 h-7 text-primary" />,
           title: "Máquinas e Equipamentos",
-          description: "Financie equipamentos nacionais credenciados no BNDES com até 100% de financiamento."
+          description: "Financie equipamentos nacionais credenciados no BNDES com até 100% de financiamento. Modernize sua produção."
         },
         {
           icon: <TrendingUp className="w-7 h-7 text-primary" />,
           title: "Projetos de Expansão",
-          description: "Capital para ampliar sua empresa, construir, reformar ou comprar imóveis comerciais."
+          description: "Capital para ampliar sua empresa, construir, reformar ou comprar imóveis comerciais. Cresça com segurança."
         },
         {
           icon: <Leaf className="w-7 h-7 text-primary" />,
           title: "Linhas Sustentáveis",
-          description: "Condições especiais para projetos de energia solar, eficiência energética e sustentabilidade."
+          description: "Condições especiais para projetos de energia solar, eficiência energética e sustentabilidade. Invista no futuro."
         },
         {
           icon: <Clock className="w-7 h-7 text-primary" />,
           title: "Prazo de até 120 meses",
-          description: "Parcele em até 10 anos com carência de até 24 meses para começar a pagar."
+          description: "Parcele em até 10 anos com carência de até 24 meses para começar a pagar. Planejamento de longo prazo."
         },
         {
           icon: <Shield className="w-7 h-7 text-primary" />,
           title: "Assessoria Completa",
-          description: "Cuidamos de toda a burocracia. Você foca no seu negócio, nós resolvemos o financiamento."
+          description: "Cuidamos de toda a burocracia e documentação. Você foca no seu negócio, nós resolvemos o financiamento."
         }
       ]}
       features={[
@@ -61,7 +63,7 @@ const CreditoBNDES = () => {
         {
           name: "Engenheiro Paulo Silva",
           role: "Diretor, Indústria Metalúrgica - RS",
-          content: "Financiamos R$ 2 milhões em equipamentos CNC. Taxa de 0.89% ao mês e 24 meses de carência. Impossível encontrar isso em banco comum.",
+          content: "Financiamos R$ 2 milhões em equipamentos CNC. Taxa de 0.89% ao mês e 24 meses de carência. Impossível encontrar isso em banco comum!",
           rating: 5
         },
         {
@@ -80,15 +82,15 @@ const CreditoBNDES = () => {
       faqs={[
         {
           question: "Minha empresa pode acessar o BNDES?",
-          answer: "Empresas de todos os portes podem acessar, desde MEI até grandes corporações. Cada linha tem seus requisitos específicos."
+          answer: "Empresas de todos os portes podem acessar, desde MEI até grandes corporações. Cada linha tem seus requisitos específicos e nós te ajudamos a encontrar a melhor."
         },
         {
           question: "Quais equipamentos podem ser financiados?",
-          answer: "Equipamentos nacionais credenciados no BNDES. Você pode consultar no site do BNDES ou nossa equipe verifica para você."
+          answer: "Equipamentos nacionais credenciados no BNDES. Você pode consultar no site do BNDES ou nossa equipe verifica para você gratuitamente."
         },
         {
           question: "Qual a taxa de juros?",
-          answer: "Varia conforme a linha e o porte da empresa. Pode partir de TLP (Taxa de Longo Prazo) + spread, ficando bem abaixo do mercado."
+          answer: "Varia conforme a linha e o porte da empresa. Pode partir de TLP (Taxa de Longo Prazo) + spread, ficando muito abaixo do mercado."
         },
         {
           question: "Quanto tempo para aprovar?",
@@ -96,7 +98,7 @@ const CreditoBNDES = () => {
         },
         {
           question: "Preciso de garantias?",
-          answer: "Sim, normalmente são exigidas garantias como aval dos sócios, garantias reais ou o próprio bem financiado."
+          answer: "Sim, normalmente são exigidas garantias como aval dos sócios, garantias reais ou o próprio bem financiado. Analisamos cada caso."
         }
       ]}
     />
