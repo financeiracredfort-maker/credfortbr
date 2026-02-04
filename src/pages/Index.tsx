@@ -2,6 +2,7 @@ import React from 'react';
 import Header from '@/components/Header';
 import HeroSection from '@/components/HeroSection';
 import TrustBadges from '@/components/TrustBadges';
+import HowItWorksSection from '@/components/HowItWorksSection';
 import SimulatorSection from '@/components/SimulatorSection';
 import BenefitsSection from '@/components/BenefitsSection';
 import TestimonialsSection from '@/components/TestimonialsSection';
@@ -18,6 +19,7 @@ const Index = () => {
       <ExitIntentPopup />
       <HeroSection />
       <TrustBadges />
+      <HowItWorksSection />
       <SimulatorSection />
       <BenefitsSection />
       <TestimonialsSection />

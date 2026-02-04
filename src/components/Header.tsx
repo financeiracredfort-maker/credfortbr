@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Building2, Menu, X, MessageCircle, ChevronDown } from 'lucide-react';
+import { Menu, X, MessageCircle, ChevronDown } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import logoCredfort from '@/assets/logo-credfort.png';
 
 const WHATSAPP_NUMBER = '5541956766654';
 const WHATSAPP_MESSAGE = 'Olá! Gostaria de falar com um consultor da CredFort.';
@@ -37,11 +38,12 @@ const Header = () => {
       isScrolled ? 'bg-background/95 backdrop-blur-xl border-b border-border shadow-lg' : 'bg-transparent'
     }`}>
       <div className="max-w-7xl mx-auto px-4 h-20 flex items-center justify-between">
-        <Link to="/" className="flex items-center gap-3">
-          <div className="bg-gradient-to-br from-amber-400 to-amber-600 p-2 rounded-lg">
-            <Building2 className="text-background w-6 h-6" />
-          </div>
-          <span className="text-2xl font-black tracking-tighter text-foreground">CREDFORT</span>
+        <Link to="/" className="flex items-center">
+          <img 
+            src={logoCredfort} 
+            alt="CredFort - Sua Saúde Financeira" 
+            className="h-10 md:h-12 w-auto object-contain"
+          />
         </Link>
         
         <div className="hidden md:flex items-center gap-8">

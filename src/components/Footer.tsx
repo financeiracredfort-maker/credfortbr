@@ -1,6 +1,7 @@
 import React from 'react';
-import { Building2, MessageCircle, Phone, Mail, MapPin } from 'lucide-react';
+import { MessageCircle, Phone, Mail, MapPin } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import logoCredfort from '@/assets/logo-credfort.png';
 
 const WHATSAPP_NUMBER = '5541956766654';
 
@@ -24,11 +25,12 @@ const Footer = () => {
       <div className="max-w-7xl mx-auto">
         <div className="grid md:grid-cols-4 gap-12 mb-12">
           <div className="col-span-1">
-            <Link to="/" className="flex items-center gap-3 mb-6">
-              <div className="bg-primary p-2 rounded-lg">
-                <Building2 className="w-5 h-5 text-primary-foreground" />
-              </div>
-              <span className="text-xl font-black text-foreground">CREDFORT</span>
+            <Link to="/" className="flex items-center mb-6">
+              <img 
+                src={logoCredfort} 
+                alt="CredFort - Sua Saúde Financeira" 
+                className="h-12 w-auto object-contain"
+              />
             </Link>
             <p className="text-muted-foreground text-sm mb-6">
               Correspondente bancário focado em facilitar o acesso ao crédito com transparência e segurança.
