@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import { ArrowRight, CheckCircle2, MessageCircle, Shield, Clock, Star, Users, Zap, TrendingUp, Award, Sparkles } from 'lucide-react';
+import { ArrowRight, CheckCircle2, MessageCircle, Shield, Clock, Star, Users, Zap, TrendingUp, Award, Sparkles, FileSearch, Banknote } from 'lucide-react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { AnimatedSection, useStaggerAnimation } from '@/hooks/useScrollAnimation';
@@ -274,6 +274,53 @@ const ServicePageTemplate: React.FC<ServicePageProps> = ({
               <TrendingUp className="w-5 h-5 text-success" />
               <span>+R$ 500M LIBERADOS</span>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* How It Works Section */}
+      <section className="section-padding bg-background">
+        <div className="max-w-7xl mx-auto">
+          <AnimatedSection className="text-center mb-16">
+            <span className="text-primary font-bold text-sm uppercase tracking-widest mb-4 block">
+              Processo Simples
+            </span>
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+              Como Funciona?
+            </h2>
+            <p className="text-muted-foreground max-w-2xl mx-auto">
+              Do primeiro contato ao dinheiro na conta em <span className="text-primary font-bold">4 passos simples</span>
+            </p>
+          </AnimatedSection>
+
+          <div className="grid md:grid-cols-4 gap-6 relative">
+            {/* Connecting Line (Desktop) */}
+            <div className="hidden md:block absolute top-16 left-[12%] right-[12%] h-0.5 bg-gradient-to-r from-primary/50 via-primary to-primary/50" />
+
+            {[
+              { icon: <MessageCircle className="w-7 h-7" />, number: '01', title: 'Entre em Contato', desc: 'Fale conosco pelo WhatsApp', time: '30 segundos' },
+              { icon: <FileSearch className="w-7 h-7" />, number: '02', title: 'Análise Personalizada', desc: 'Avaliamos seu perfil', time: 'Sem burocracia' },
+              { icon: <CheckCircle2 className="w-7 h-7" />, number: '03', title: 'Aprovação Rápida', desc: 'Crédito aprovado rapidamente', time: 'Em minutos' },
+              { icon: <Banknote className="w-7 h-7" />, number: '04', title: 'Dinheiro na Conta', desc: 'Valor liberado na sua conta', time: 'Em até 24h' }
+            ].map((step, index) => (
+              <AnimatedSection key={index} animation="fadeUp" delay={index * 0.15}>
+                <div className="relative group">
+                  <div className="card-glass p-6 h-full text-center hover:border-primary/40 transition-all duration-500 hover:-translate-y-2">
+                    <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-8 h-8 bg-primary rounded-full flex items-center justify-center text-primary-foreground font-bold text-xs shadow-lg z-10">
+                      {step.number}
+                    </div>
+                    <div className="w-16 h-16 mx-auto mt-4 mb-4 rounded-2xl bg-gradient-to-br from-primary/20 to-primary/5 flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
+                      {step.icon}
+                    </div>
+                    <h3 className="text-lg font-bold text-foreground mb-2">{step.title}</h3>
+                    <p className="text-muted-foreground text-sm mb-3">{step.desc}</p>
+                    <span className="inline-flex items-center px-3 py-1 rounded-full bg-success/10 border border-success/30 text-success text-xs font-bold">
+                      {step.time}
+                    </span>
+                  </div>
+                </div>
+              </AnimatedSection>
+            ))}
           </div>
         </div>
       </section>

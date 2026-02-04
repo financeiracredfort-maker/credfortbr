@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { X, MessageCircle, Gift, Shield, Clock, Zap, CheckCircle2 } from 'lucide-react';
 import { gsap } from 'gsap';
+import logoCredfort from '@/assets/logo-credfort.png';
 
 const WHATSAPP_NUMBER = '5541956766654';
 
@@ -104,8 +105,14 @@ const ExitIntentPopup: React.FC<ExitIntentPopupProps> = ({ onClose }) => {
           <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxjaXJjbGUgY3g9IjIwIiBjeT0iMjAiIHI9IjIiIGZpbGw9InJnYmEoMCwwLDAsMC4xKSIvPjwvZz48L3N2Zz4=')] opacity-30" />
           
           <div className="relative z-10">
-            <div className="inline-flex items-center justify-center w-16 h-16 bg-white/20 rounded-full mb-4">
-              <Gift className="w-8 h-8 text-primary-foreground" />
+            {/* Logo */}
+            <img 
+              src={logoCredfort} 
+              alt="CredFort" 
+              className="h-10 mx-auto mb-4 brightness-0 invert opacity-90"
+            />
+            <div className="inline-flex items-center justify-center w-14 h-14 bg-white/20 rounded-full mb-4">
+              <Gift className="w-7 h-7 text-primary-foreground" />
             </div>
             <h2 className="text-2xl md:text-3xl font-black text-primary-foreground mb-2">
               Espere! Não vá ainda...
