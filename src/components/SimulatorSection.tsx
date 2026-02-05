@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { TrendingUp, CheckCircle2, MessageCircle, Shield, Zap } from 'lucide-react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { trackWhatsAppClick, trackSimulatorSubmit, trackCTAClick } from '@/lib/analytics';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -51,6 +52,11 @@ const SimulatorSection = () => {
   }, []);
 
   const handleWhatsApp = () => {
+    // Track simulator submission
+    trackSimulatorSubmit(amount, months);
+    trackCTAClick('garantir_taxa_especial', 'simulator');
+    trackWhatsAppClick('simulator', 'simulacao');
+    
     const message = `Olá! Fiz uma simulação na CredFort:
 - Valor: R$ ${amount.toLocaleString('pt-BR')}
 - Prazo: ${months} meses

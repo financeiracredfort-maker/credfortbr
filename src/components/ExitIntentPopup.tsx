@@ -2,6 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { X, MessageCircle, Gift, Shield, Clock, Zap, CheckCircle2 } from 'lucide-react';
 import { gsap } from 'gsap';
 import logoCredfort from '@/assets/logo-credfort.png';
+import { trackExitIntentConversion, trackWhatsAppClick, trackCTAClick } from '@/lib/analytics';
 
 const WHATSAPP_NUMBER = '5541956766654';
 
@@ -14,6 +15,7 @@ const ExitIntentPopup: React.FC<ExitIntentPopupProps> = ({ onClose }) => {
   const [hasShown, setHasShown] = useState(false);
 
   const handleClose = useCallback(() => {
+    trackExitIntentConversion('dismissed');
     setIsVisible(false);
     onClose?.();
     // Store in session to not show again during this visit
@@ -21,6 +23,9 @@ const ExitIntentPopup: React.FC<ExitIntentPopupProps> = ({ onClose }) => {
   }, [onClose]);
 
   const handleWhatsApp = () => {
+    trackExitIntentConversion('converted');
+    trackCTAClick('exit_intent_cta', 'exit_popup');
+    trackWhatsAppClick('exit_intent_popup');
     const message = 'Olá! Vi a oferta exclusiva de última chance e quero aproveitar! Podem me ajudar?';
     window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`, '_blank');
     handleClose();
@@ -37,6 +42,7 @@ const ExitIntentPopup: React.FC<ExitIntentPopupProps> = ({ onClose }) => {
       if (e.clientY <= 0 && !hasShown) {
         setIsVisible(true);
         setHasShown(true);
+        trackExitIntentConversion('shown');
       }
     };
 
@@ -50,6 +56,7 @@ const ExitIntentPopup: React.FC<ExitIntentPopupProps> = ({ onClose }) => {
       if (lastScrollY > 500 && currentScrollY < lastScrollY - 100 && !hasShown) {
         setIsVisible(true);
         setHasShown(true);
+        trackExitIntentConversion('shown');
       }
       lastScrollY = currentScrollY;
       
@@ -59,6 +66,7 @@ const ExitIntentPopup: React.FC<ExitIntentPopupProps> = ({ onClose }) => {
         if (!hasShown && window.scrollY > 300) {
           setIsVisible(true);
           setHasShown(true);
+          trackExitIntentConversion('shown');
         }
       }, 45000); // 45 seconds of inactivity
     };

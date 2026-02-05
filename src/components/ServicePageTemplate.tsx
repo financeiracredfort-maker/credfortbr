@@ -8,6 +8,7 @@ import Footer from './Footer';
 import WhatsAppButton from './WhatsAppButton';
 import CountdownTimer from './CountdownTimer';
 import ExitIntentPopup from './ExitIntentPopup';
+import { trackWhatsAppClick, trackCTAClick } from '@/lib/analytics';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -111,7 +112,9 @@ const ServicePageTemplate: React.FC<ServicePageProps> = ({
     return () => ctx.revert();
   }, []);
 
-  const handleWhatsApp = (message: string) => {
+  const handleWhatsApp = (message: string, ctaName: string = 'service_cta') => {
+    trackCTAClick(ctaName, 'service_page', serviceName);
+    trackWhatsAppClick('service_page', serviceName);
     window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`, '_blank');
   };
 
@@ -187,7 +190,7 @@ const ServicePageTemplate: React.FC<ServicePageProps> = ({
               {/* CTA Buttons */}
               <div className="flex flex-col sm:flex-row gap-4 mb-10">
                 <button 
-                  onClick={() => handleWhatsApp(`Olá! Tenho interesse em ${serviceName}. Gostaria de uma simulação personalizada.`)}
+                  onClick={() => handleWhatsApp(`Olá! Tenho interesse em ${serviceName}. Gostaria de uma simulação personalizada.`, 'hero_cta_primary')}
                   className="btn-primary text-base group shadow-lg shadow-primary/30"
                 >
                   <MessageCircle className="w-5 h-5" />
@@ -195,7 +198,7 @@ const ServicePageTemplate: React.FC<ServicePageProps> = ({
                   <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                 </button>
                 <button 
-                  onClick={() => handleWhatsApp(`Olá! Quero saber mais sobre ${serviceName}.`)}
+                  onClick={() => handleWhatsApp(`Olá! Quero saber mais sobre ${serviceName}.`, 'hero_cta_secondary')}
                   className="btn-secondary backdrop-blur-md"
                 >
                   <Sparkles className="w-5 h-5" />
@@ -387,7 +390,7 @@ const ServicePageTemplate: React.FC<ServicePageProps> = ({
                   <p className="text-muted-foreground mb-8">Para clientes aprovados hoje</p>
                   
                   <button 
-                    onClick={() => handleWhatsApp(`Olá! Vi a oferta especial de ${serviceName} com taxa de ${taxaMin} e quero aproveitar!`)}
+                    onClick={() => handleWhatsApp(`Olá! Vi a oferta especial de ${serviceName} com taxa de ${taxaMin} e quero aproveitar!`, 'garantir_taxa')}
                     className="btn-primary w-full justify-center"
                   >
                     <Zap className="w-5 h-5" />
@@ -485,7 +488,7 @@ const ServicePageTemplate: React.FC<ServicePageProps> = ({
               
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <button 
-                  onClick={() => handleWhatsApp(`Olá! Quero contratar ${serviceName} com a CredFort!`)}
+                  onClick={() => handleWhatsApp(`Olá! Quero contratar ${serviceName} com a CredFort!`, 'final_cta')}
                   className="px-10 py-5 bg-background text-foreground rounded-2xl font-black text-sm uppercase tracking-widest hover:bg-background/90 transition-all flex items-center justify-center gap-3 shadow-2xl"
                 >
                   <MessageCircle className="w-5 h-5" />
