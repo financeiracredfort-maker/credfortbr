@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import { MessageCircle, ArrowRight, Shield, Clock } from 'lucide-react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { trackWhatsAppClick, trackCTAClick } from '@/lib/analytics';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -34,6 +35,8 @@ const CTASection = () => {
   }, []);
 
   const handleWhatsApp = () => {
+    trackCTAClick('falar_especialista', 'cta_section');
+    trackWhatsAppClick('cta_section');
     window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(WHATSAPP_MESSAGE)}`, '_blank');
   };
 
