@@ -69,7 +69,7 @@ export const trackWhatsAppClick = (source: string, serviceType?: string) => {
   // Google Ads conversion tracking
   if (window.gtag) {
     window.gtag('event', 'conversion', {
-      send_to: 'AW-626951375/whatsapp_conversion',
+      send_to: 'AW-626951375/-NR4CK2htdIBEM-J-qoC',
       event_category: 'WhatsApp',
       event_label: source,
     });
@@ -95,10 +95,10 @@ export const trackSimulatorSubmit = (amount: number, months: number) => {
     value: amount,
   });
 
-  // Google Ads conversion for high-value leads
-  if (window.gtag && amount >= 50000) {
+  // Google Ads conversion tracking
+  if (window.gtag) {
     window.gtag('event', 'conversion', {
-      send_to: 'AW-626951375/simulator_high_value',
+      send_to: 'AW-626951375/-NR4CK2htdIBEM-J-qoC',
       value: amount,
       currency: 'BRL',
     });
@@ -121,5 +121,15 @@ export const trackPageView = (pagePath: string, pageTitle: string) => {
       page_path: pagePath,
       page_title: pageTitle,
     });
+  }
+};
+
+// Track Website traffic conversion (fires on page load)
+export const trackPageConversion = () => {
+  if (typeof window !== 'undefined' && window.gtag) {
+    window.gtag('event', 'conversion', {
+      send_to: 'AW-626951375/-NR4CK2htdIBEM-J-qoC',
+    });
+    console.log('[Analytics] Page conversion tracked: AW-626951375/-NR4CK2htdIBEM-J-qoC');
   }
 };

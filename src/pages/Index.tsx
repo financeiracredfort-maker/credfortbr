@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Header from '@/components/Header';
 import HeroSection from '@/components/HeroSection';
 import TrustBadges from '@/components/TrustBadges';
@@ -11,8 +11,12 @@ import CTASection from '@/components/CTASection';
 import Footer from '@/components/Footer';
 import WhatsAppButton from '@/components/WhatsAppButton';
 import ExitIntentPopup from '@/components/ExitIntentPopup';
+import { trackPageConversion } from '@/lib/analytics';
 
 const Index = () => {
+  useEffect(() => {
+    trackPageConversion();
+  }, []);
   return (
     <div className="min-h-screen bg-background text-foreground">
       <Header />
