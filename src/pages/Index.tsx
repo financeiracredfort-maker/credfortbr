@@ -12,9 +12,11 @@ import Footer from '@/components/Footer';
 import WhatsAppButton from '@/components/WhatsAppButton';
 import ExitIntentPopup from '@/components/ExitIntentPopup';
 import { trackPageConversion } from '@/lib/analytics';
+import { captureUTMParams } from '@/lib/utm';
 
 const Index = () => {
   useEffect(() => {
+    captureUTMParams();
     trackPageConversion();
   }, []);
   return (

@@ -3,6 +3,7 @@ import { X, MessageCircle, Gift, Shield, Clock, Zap, CheckCircle2 } from 'lucide
 import { gsap } from 'gsap';
 import logoCredfort from '@/assets/logo-credfort.png';
 import { trackExitIntentConversion, trackWhatsAppClick, trackCTAClick } from '@/lib/analytics';
+import { buildWhatsAppURL } from '@/lib/utm';
 
 const WHATSAPP_NUMBER = '5541956766654';
 
@@ -27,7 +28,7 @@ const ExitIntentPopup: React.FC<ExitIntentPopupProps> = ({ onClose }) => {
     trackCTAClick('exit_intent_cta', 'exit_popup');
     trackWhatsAppClick('exit_intent_popup');
     const message = 'Olá! Vi a oferta exclusiva de última chance e quero aproveitar! Podem me ajudar?';
-    window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`, '_blank');
+    window.open(buildWhatsAppURL(WHATSAPP_NUMBER, message), '_blank');
     handleClose();
   };
 

@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import heroImage from '@/assets/hero-home.jpg';
 import CountdownTimer from './CountdownTimer';
 import { trackWhatsAppClick, trackCTAClick } from '@/lib/analytics';
+import { buildWhatsAppURL } from '@/lib/utm';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -66,7 +67,7 @@ const HeroSection = () => {
   const handleWhatsApp = () => {
     trackCTAClick('solicitar_credito', 'hero');
     trackWhatsAppClick('hero_cta');
-    window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(WHATSAPP_MESSAGE)}`, '_blank');
+    window.open(buildWhatsAppURL(WHATSAPP_NUMBER, WHATSAPP_MESSAGE), '_blank');
   };
 
   return (

@@ -9,6 +9,7 @@ import WhatsAppButton from './WhatsAppButton';
 import CountdownTimer from './CountdownTimer';
 import ExitIntentPopup from './ExitIntentPopup';
 import { trackWhatsAppClick, trackCTAClick } from '@/lib/analytics';
+import { buildWhatsAppURL, captureUTMParams } from '@/lib/utm';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -75,6 +76,7 @@ const ServicePageTemplate: React.FC<ServicePageProps> = ({
   const statsRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    captureUTMParams();
     const ctx = gsap.context(() => {
       // Hero animation
       const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
@@ -115,7 +117,7 @@ const ServicePageTemplate: React.FC<ServicePageProps> = ({
   const handleWhatsApp = (message: string, ctaName: string = 'service_cta') => {
     trackCTAClick(ctaName, 'service_page', serviceName);
     trackWhatsAppClick('service_page', serviceName);
-    window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`, '_blank');
+    window.open(buildWhatsAppURL(WHATSAPP_NUMBER, message), '_blank');
   };
 
   return (
