@@ -3,6 +3,7 @@ import { TrendingUp, CheckCircle2, MessageCircle, Shield, Zap } from 'lucide-rea
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { trackWhatsAppClick, trackSimulatorSubmit, trackCTAClick } from '@/lib/analytics';
+import { buildWhatsAppURL } from '@/lib/utm';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -63,7 +64,7 @@ const SimulatorSection = () => {
 - Parcela estimada: R$ ${monthlyInstallment.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
 
 Gostaria de prosseguir com a contratação!`;
-    window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`, '_blank');
+    window.open(buildWhatsAppURL(WHATSAPP_NUMBER, message), '_blank');
   };
 
   return (

@@ -1,6 +1,7 @@
 import React from 'react';
 import { MessageCircle } from 'lucide-react';
 import { trackWhatsAppClick } from '@/lib/analytics';
+import { buildWhatsAppURL } from '@/lib/utm';
 
 const WHATSAPP_NUMBER = '5541956766654';
 const WHATSAPP_MESSAGE = 'Olá! Gostaria de saber mais sobre as opções de crédito da CredFort.';
@@ -8,8 +9,7 @@ const WHATSAPP_MESSAGE = 'Olá! Gostaria de saber mais sobre as opções de cré
 const WhatsAppButton = () => {
   const handleClick = () => {
     trackWhatsAppClick('floating_button');
-    const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(WHATSAPP_MESSAGE)}`;
-    window.open(url, '_blank');
+    window.open(buildWhatsAppURL(WHATSAPP_NUMBER, WHATSAPP_MESSAGE), '_blank');
   };
 
   return (
